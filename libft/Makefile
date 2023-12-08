@@ -6,7 +6,7 @@
 #    By: adouiyeh <adouiyeh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 20:08:31 by adouiyeh          #+#    #+#              #
-#    Updated: 2023/12/06 00:11:57 by adouiyeh         ###   ########.fr        #
+#    Updated: 2023/12/09 00:49:26 by adouiyeh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,11 +64,11 @@ FILES_B = 	ft_lstnew \
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
-SRCS_B = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES_B)))
+SRCS_B = $(addprefix $(SRCS_DIR), $(addsuffix _bonus.c, $(FILES_B)))
 
 OBJS_DIR = ./
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
-OBJS_B = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES_B)))
+OBJS_B = $(addprefix $(OBJS_DIR), $(addsuffix _bonus.o, $(FILES_B)))
 
 
 .c.o: $(SRCS)
