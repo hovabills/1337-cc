@@ -6,7 +6,7 @@
 /*   By: adouiyeh <adouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:25:12 by adouiyeh          #+#    #+#             */
-/*   Updated: 2023/12/06 04:20:10 by adouiyeh         ###   ########.fr       */
+/*   Updated: 2023/12/07 03:15:49 by adouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strnstr(const char *big, const char *small, size_t len)
 	slen = ft_strlen(s);
 	if (!slen)
 		return (b);
-	while ((i + slen) <= len && b[i])
+	while (b[i] && (i + slen) <= len)
 	{
 		if (ft_strncmp(b + i, s, slen) == 0)
 			return (b + i);

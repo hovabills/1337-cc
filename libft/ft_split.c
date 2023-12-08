@@ -6,7 +6,7 @@
 /*   By: adouiyeh <adouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:25:43 by adouiyeh          #+#    #+#             */
-/*   Updated: 2023/12/06 21:58:54 by adouiyeh         ###   ########.fr       */
+/*   Updated: 2023/12/09 00:15:31 by adouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 void	*ft_free(char **p)
 {
+	char	**tmp;
+
+	tmp = p;
 	while (*p)
 	{
 		free(*p);
+		*p = NULL;
 		p++;
 	}
-	free(p);
+	free(tmp);
+	tmp = NULL;
 	return (NULL);
 }
 

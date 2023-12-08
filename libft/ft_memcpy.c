@@ -6,7 +6,7 @@
 /*   By: adouiyeh <adouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 20:27:41 by adouiyeh          #+#    #+#             */
-/*   Updated: 2023/11/26 20:27:42 by adouiyeh         ###   ########.fr       */
+/*   Updated: 2023/12/07 00:21:53 by adouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char	*d;
-	unsigned char	*s;
+	size_t	i;
 
-	d = (unsigned char *)dest;
-	s = (unsigned char *)src;
-	while (n--)
+	i = 0;
+	if (!dest && !src)
+		return (0);
+	while (i < n)
 	{
-		*d = *s;
-		d++;
-		s++;
+		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		i++;
 	}
 	return (dest);
 }
