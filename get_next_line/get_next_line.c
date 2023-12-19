@@ -3,7 +3,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-#define BUFFER_SIZE 6 
+#define BUFFER_SIZE 1000 
 
 size_t	ft_strlen(char *str)
 {
@@ -93,17 +93,18 @@ char	*get_next_line(int fd)
 	
 	if (( nl = ft_strchrnl(prev_line)))
 	{
-		next_line = ft_substr(prev_line, nl - prev_line);	
+		next_line = ft_substr(prev_line, (nl + 1) - prev_line);	
 		ft_strcpy(prev_line, nl + 1);
 		return next_line;
 	}
 	next_line = ft_strdup(prev_line);
-	while (( br = read(fd, buff, BUFFER_SIZE)))
+	br = read(fd, buff, BUFFER_SIZE); 
+	while (br > 0)
 	{
 		buff[br] = '\0';
 		if ((nl = ft_strchrnl(buff)))
 		{
-			sub_line = ft_substr(buff, nl - buff);
+			sub_line = ft_substr(buff, (nl + 1) - buff);
 			tmp_line = next_line;
 			next_line = ft_strjoin(next_line, sub_line);
 			free(sub_line);
@@ -114,20 +115,27 @@ char	*get_next_line(int fd)
 		tmp_line = next_line;
 		next_line = ft_strjoin(next_line, buff);
 		free(tmp_line);
+		br = read(fd, buff, BUFFER_SIZE);
 	}
+	if (br <= 0)
+	{
+		free(next_line);
+		return NULL;
+	}		
 	return next_line;	
 }
 
 int main()
 {
-	int fd = open("test.txt", O_RDONLY);
-	char *line;
-	for (int i = 0; i < 3; i++)
+	int fd = open("get_next_line.c", O_RDONLY);
+	char *line = get_next_line(fd);
+	while (line)
 	{
-		line = get_next_line(fd);
-		printf("NEXT LINE => %s\n", line);
+		printf("%s", line);
 		free(line);
-	} 
+		line = get_next_line(fd);
+	}	
+	free(line);
 	close(fd);
 	return 0;
 }
