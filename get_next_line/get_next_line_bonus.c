@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adouiyeh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/20 02:47:09 by adouiyeh          #+#    #+#             */
-/*   Updated: 2023/12/21 06:20:12 by adouiyeh         ###   ########.fr       */
+/*   Created: 2023/12/21 23:23:05 by adouiyeh          #+#    #+#             */
+/*   Updated: 2023/12/22 00:11:07 by adouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_left_line(int fd, char *left_line)
 {
@@ -67,13 +67,13 @@ char	*set_next_line(char *left_line)
 
 char	*get_next_line(int fd)
 {
-	static char	*left_line;
+	static char	*left_line_fd[1024];
 	char		*next_line;
 
-	left_line = get_left_line(fd, left_line);
-	if (!left_line || !*left_line)
+	left_line_fd[fd] = get_left_line(fd, left_line_fd[fd]);
+	if (!left_line_fd[fd] || !*left_line_fd[fd])
 		return (NULL);
-	next_line = set_next_line(left_line);
-	left_line = set_left_line(left_line);
+	next_line = set_next_line(left_line_fd[fd]);
+	left_line_fd[fd] = set_left_line(left_line_fd[fd]);
 	return (next_line);
 }
