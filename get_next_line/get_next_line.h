@@ -27,5 +27,6 @@ char	*ft_strchrnl(char *str);
 char	*ft_substr(char *str, size_t len);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *str);
+char	*get_next_line(int fd);
 
 #endif
