@@ -51,7 +51,6 @@ char	*set_left_line(char *left_line)
 		free(left_line);
 		return (tmp_line);
 	}
-	free(left_line);
 	return (NULL);
 }
 
