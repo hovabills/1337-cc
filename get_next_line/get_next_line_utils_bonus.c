@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adouiyeh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/22 00:09:06 by adouiyeh          #+#    #+#             */
-/*   Updated: 2023/12/22 00:09:15 by adouiyeh         ###   ########.fr       */
+/*   Created: 2024/01/14 02:53:20 by adouiyeh          #+#    #+#             */
+/*   Updated: 2024/01/14 02:53:28 by adouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *str)
 {

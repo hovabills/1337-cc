@@ -5,32 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adouiyeh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/21 23:23:05 by adouiyeh          #+#    #+#             */
-/*   Updated: 2023/12/22 00:11:07 by adouiyeh         ###   ########.fr       */
+/*   Created: 2024/01/14 02:49:39 by adouiyeh          #+#    #+#             */
+/*   Updated: 2024/01/17 00:08:54 by adouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*get_left_line(int fd, char *left_line)
+char	*read_left_line(int fd, char *left_line)
 {
-	int		rb;
+	int		rd;
 	char	*buff;
 	char	*tmp_line;
 
-	rb = 1;
-	buff = (char *)malloc(BUFFER_SIZE + 1);
+	buff = (char *)malloc((size_t)BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
-	while (!ft_strchrnl(left_line) && rb)
+	rd = 1;
+	while (rd && !(ft_strchrnl(left_line)))
 	{
-		rb = read(fd, buff, BUFFER_SIZE);
-		if (rb == -1)
+		rd = read(fd, buff, BUFFER_SIZE);
+		if (rd == -1)
 		{
 			free(buff);
+			free(left_line);
 			return (NULL);
 		}
-		buff[rb] = '\0';
+		buff[rd] = '\0';
 		tmp_line = left_line;
 		left_line = ft_strjoin(left_line, buff);
 		free(tmp_line);
@@ -39,29 +40,32 @@ char	*get_left_line(int fd, char *left_line)
 	return (left_line);
 }
 
-char	*set_left_line(char *left_line)
-{
-	char	*nl;
-	char	*tmp_line;
-
-	nl = ft_strchrnl(left_line);
-	if (nl)
-	{
-		tmp_line = ft_strdup(nl + 1);
-		free(left_line);
-		return (tmp_line);
-	}
-	return (NULL);
-}
-
 char	*set_next_line(char *left_line)
 {
 	char	*nl;
 
+	if (!*left_line)
+		return (NULL);
 	nl = ft_strchrnl(left_line);
-	if (nl)
-		return (ft_substr(left_line, (nl + 1) - left_line));
-	return (left_line);
+	if (!nl)
+		return (ft_strdup(left_line));
+	return (ft_substr(left_line, nl + 1 - left_line));
+}
+
+char	*set_left_line(char *left_line)
+{
+	char	*nl;
+	char	*new_left_line;
+
+	nl = ft_strchrnl(left_line);
+	if (!nl)
+	{
+		free(left_line);
+		return (NULL);
+	}
+	new_left_line = ft_strdup(nl + 1);
+	free(left_line);
+	return (new_left_line);
 }
 
 char	*get_next_line(int fd)
@@ -69,8 +73,10 @@ char	*get_next_line(int fd)
 	static char	*left_line_fd[1024];
 	char		*next_line;
 
-	left_line_fd[fd] = get_left_line(fd, left_line_fd[fd]);
-	if (!left_line_fd[fd] || !*left_line_fd[fd])
+	if (fd < 0 || BUFFER_SIZE < 1)
+		return (NULL);
+	left_line_fd[fd] = read_left_line(fd, left_line_fd[fd]);
+	if (!left_line_fd[fd])
 		return (NULL);
 	next_line = set_next_line(left_line_fd[fd]);
 	left_line_fd[fd] = set_left_line(left_line_fd[fd]);

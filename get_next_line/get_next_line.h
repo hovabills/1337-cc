@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adouiyeh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/22 00:09:52 by adouiyeh          #+#    #+#             */
-/*   Updated: 2023/12/22 00:11:35 by adouiyeh         ###   ########.fr       */
+/*   Created: 2024/01/14 02:58:46 by adouiyeh          #+#    #+#             */
+/*   Updated: 2024/01/14 02:58:50 by adouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10000000
+#  define BUFFER_SIZE 1 
 # endif
 
 size_t	ft_strlen(char *str);
