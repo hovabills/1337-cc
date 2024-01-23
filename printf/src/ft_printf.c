@@ -1,5 +1,28 @@
 #include "ft_printf.h"
 
+t_fmt *print_fmt(char *str, va_list args)
+{
+    t_fmt *fmt;
+
+    fmt = parse_fmt(str);
+    str += fmt->n_parse;
+
+    if (*str == 'c')
+        print_fmt_c(fmt, va_arg(args, int));
+    else if (*str == 's')
+        print_fmt_s(fmt, va_arg(args, char *));
+    else if (*str == 'd' || *str == 'i')
+        print_fmt_d(fmt, va_arg(args, int));
+    else if (*str == 'u')
+        print_fmt_u(fmt, va_arg(args, unsigned int));
+    else if (*str == 'x')
+        print_fmt_xX(fmt, va_arg(args, unsigned int), 0);
+    else if (*str == 'X')
+        print_fmt_xX(fmt, va_arg(args, unsigned int), 1);
+    return (fmt);
+}
+
+
 int ft_printf(const char *str, ...)
 {
 	va_list args;
@@ -9,8 +32,13 @@ int ft_printf(const char *str, ...)
 	len = 0;
 	va_start(args, str);
 	while (*str)
-	{
-		if (*str == '%')
+	{	
+		if (*str == '%' && *(str + 1) == '%')
+		{
+			len += ft_putchar('%');
+			str += 2;
+		}
+		else if (*str == '%')
 		{
 			str++;
 			fmt = print_fmt((char *)str, args);

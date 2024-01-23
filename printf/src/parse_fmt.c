@@ -1,4 +1,4 @@
-#include "fmt.h"
+#include "../inc/fmt.h"
 
 t_fmt *init_fmt()
 {
@@ -10,7 +10,8 @@ t_fmt *init_fmt()
 	fmt->alt_fmt = 0;
 	fmt->padd_ch = ' ';
 	fmt->padd_len = 0;
-	fmt->prec = -1;
+	fmt->prec = 0;
+	fmt->prec_len = 0;
 	fmt->n_parse = 0;
 	fmt->n_print = 0;
 	return fmt;
@@ -61,12 +62,12 @@ void parse_prec(t_fmt *fmt, char *str)
 	str += fmt->n_parse;
 	if (*str == '.')
 	{
-		fmt->prec = 0;
+		fmt->prec = 1;
 		fmt->n_parse++;
 		str++;
 		while ((ft_isdigit(*str)))
 		{
-			fmt->prec = fmt->prec * 10 + (*str - '0');
+			fmt->prec_len = fmt->prec_len * 10 + (*str - '0');
 			fmt->n_parse++;
 			str++;
 		}
@@ -84,13 +85,14 @@ t_fmt *parse_fmt(char *str)
 
 // int main()
 // {
-// 	t_fmt *frmt = ft_fmt("#+ -.12d");
-// 	printf("PLUS SIGN: %c\n", frmt->p_sign);
-// 	printf("ALT fmt: %d\n", frmt->alt_fmt);
+// 	t_fmt *frmt = parse_fmt("#+ -0.12d");
+// 	printf("PLUS SIGN: %c\n", frmt->sign);
+// 	printf("ALT FMT: %d\n", frmt->alt_fmt);
 // 	printf("LEFT ADJ: %d\n", frmt->ladj);
 // 	printf("PADD CHAR: %c\n", frmt->padd_ch);
 // 	printf("PADD LEN: %d\n", frmt->padd_len);
-// 	printf("PRECISION: %d\n", frmt->prec);
+// 	printf("PREC: %d\n", frmt->prec);
+// 	printf("PREC LEN	: %d\n", frmt->prec);
 // 	printf("NUM PARSED %d\n", frmt->n_parse);
 
 // 	free(frmt);

@@ -1,11 +1,6 @@
 {
     "files.associations": {
-        "ft_format.h": "c",
         "ft_printf.h": "c",
-        "libft.h": "c",
-        "fmt.h": "c",
-        "stdio.h": "c",
-        "stdlib.h": "c",
-        "stdarg.h": "c"
+        "fmt.h": "c"
     }
 }

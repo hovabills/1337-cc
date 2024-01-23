@@ -6,12 +6,14 @@ int ft_strlen(char *str)
 	int len;
 	
 	len = 0;
+	if (!str)
+		return (0);
 	while(*str++)
 		len++;
 	return len;
 }
 
-size_t ft_nbrlen(long long nbr)
+size_t ft_nbrbase_len(long long nbr, int blen)
 {
 	size_t len;
 
@@ -20,7 +22,7 @@ size_t ft_nbrlen(long long nbr)
 		return (1);
 	while (nbr)
 	{
-		nbr /= 10;
+		nbr /= blen;
 		len++;
 	}
 	return (len);
@@ -38,7 +40,7 @@ int	ft_putchar(char ch)
 
 int ft_putstr(char *str)
 {
-	if (!*str)
+	if (!str || !*str)
 		return (0);
 	write(1, str, 1);
 	return (1 + ft_putstr(++str));
@@ -57,20 +59,25 @@ int	ft_putnstr(char *str, int n)
 	return i;
 }
 
-char *ft_itoa(long long nbr)
+char *ft_itoa_base(unsigned long long nbr, char *base, int blen)
 {
 	int len;
 	char *str;
 
-	len = ft_nbrlen(nbr);
+	len = ft_nbrbase_len(nbr, blen);
 	str = (char *)malloc(len + 1);
 	if (!str)
 		return (NULL);
 	str[len--] = '\0';
+	if (nbr == 0)
+	{
+		*str = '0';
+		return str;
+	}
 	while (nbr)
 	{	
-		str[len--] = nbr % 10 + '0';
-		nbr /= 10;
+		str[len--] = base[nbr % blen];
+		nbr /= blen;
 	}
 	return (str);
 }
