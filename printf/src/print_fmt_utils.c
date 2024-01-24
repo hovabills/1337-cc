@@ -17,7 +17,7 @@ void print_prec_s(t_fmt *fmt, char *str)
     i = 0;
     if (!str)
     {
-        if (fmt->prec_len >= 6)
+        if (fmt->prec_len >= 6 || !fmt->prec)
             fmt->n_print += ft_putstr("(null)");
         return ;
     }

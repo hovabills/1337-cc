@@ -29,6 +29,8 @@ int ft_printf(const char *str, ...)
 	t_fmt *fmt;
 	int len;
 
+	if (!str)
+		return (-1);
 	len = 0;
 	va_start(args, str);
 	while (*str)

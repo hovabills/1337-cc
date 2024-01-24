@@ -1,12 +1,10 @@
 #include "fmt.h"
 
-char *handle_fmt_d(t_fmt *fmt, int n)
+char *handle_fmt_d(t_fmt *fmt, long nbr)
 {
-    long long nbr;
     int slen;
     char *str;
 
-    nbr = n;
     if (nbr < 0)
     {
         fmt->sign = '-';
@@ -14,31 +12,39 @@ char *handle_fmt_d(t_fmt *fmt, int n)
     }
     str = ft_itoa_base(nbr, BASE_10, 10);
     slen = ft_strlen(str);
-    fmt->prec_len -= slen;
-    if (n || fmt->prec_len > 0)
-        fmt->padd_len -= slen;
-    if (fmt->prec && fmt->prec_len > 0)
-        fmt->padd_len -= fmt->prec_len;
     if (fmt->sign)
         fmt->padd_len--;
     if (fmt->ladj || fmt->prec)
         fmt->padd_ch = ' ';
+    if (!nbr && fmt->prec && fmt->prec_len == 0)
+    {
+        *str = '\0';
+        return str;
+    }  
+    fmt->padd_len -= slen;
+    fmt->prec_len -= slen;
+    if (fmt->prec && fmt->prec_len > 0)
+        fmt->padd_len -= fmt->prec_len;
     return (str);
 }
-char *handle_fmt_u(t_fmt *fmt, unsigned int n)
+char *handle_fmt_u(t_fmt *fmt, unsigned int nbr)
 {
     int slen;
     char *str;
 
-    str = ft_itoa_base(n, BASE_10, 10);
+    str = ft_itoa_base(nbr, BASE_10, 10);
     slen = ft_strlen(str);
-    fmt->prec_len -= slen;
-    if (n || fmt->prec_len > 0)
-        fmt->padd_len -= slen;
-    if (fmt->prec && fmt->prec_len > 0)
-        fmt->padd_len -= fmt->prec_len;
     if (fmt->ladj || fmt->prec)
         fmt->padd_ch = ' ';
+    if (!nbr && fmt->prec && fmt->prec_len == 0)
+    {
+        *str = '\0';
+        return str;
+    }  
+    fmt->padd_len -= slen;
+    fmt->prec_len -= slen;
+    if (fmt->prec && fmt->prec_len > 0)
+        fmt->padd_len -= fmt->prec_len;
     return (str);
 }
 char *handle_fmt_xX(t_fmt *fmt, unsigned int n, int upper)
@@ -77,3 +83,4 @@ void handle_fmt_s(t_fmt *fmt, char *str)
     else
         fmt->padd_len -= slen;  
 }
+

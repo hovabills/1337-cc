@@ -20,6 +20,8 @@ $(NAME): $(OBJS)
 
 all: $(NAME)
 
+bonus: $(NAME)
+
 test: main.o $(NAME)
 	$(CC) -o $@ $^ $(CFLAGS) $(ADD_SAN)
 

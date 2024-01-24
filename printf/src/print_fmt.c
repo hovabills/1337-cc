@@ -21,8 +21,7 @@ void print_fmt_d(t_fmt *fmt, int n)
         print_padd(fmt);
     print_sign(fmt);
     print_prec(fmt);
-    if (n || fmt->prec_len > 0 )
-        fmt->n_print += ft_putstr(str);
+    fmt->n_print += ft_putstr(str);
     if (fmt->ladj)
         print_padd(fmt);
     fmt->n_parse++;
@@ -36,8 +35,7 @@ void print_fmt_u(t_fmt *fmt, int n)
     if (!fmt->ladj)
         print_padd(fmt);
     print_prec(fmt);
-    if (n || fmt->prec_len > 0 )
-        fmt->n_print += ft_putstr(str);
+    fmt->n_print += ft_putstr(str);
     if (fmt->ladj)
         print_padd(fmt);
     fmt->n_parse++;

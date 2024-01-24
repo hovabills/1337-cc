@@ -30,7 +30,7 @@ t_fmt *parse_fmt(char *str);
 
 //handle
 void handle_fmt_s(t_fmt *fmt, char *s);
-char *handle_fmt_d(t_fmt *fmt, int d);
+char *handle_fmt_d(t_fmt *fmt, long d);
 char *handle_fmt_u(t_fmt *fmt,unsigned int d);
 char *handle_fmt_xX(t_fmt *fmt, unsigned int n, int upper);
 
