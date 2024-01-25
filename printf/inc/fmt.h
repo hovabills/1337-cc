@@ -2,6 +2,7 @@
  #define FMT_H
 
 #include "libft.h"
+#include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
 
@@ -24,6 +25,7 @@ void print_padd(t_fmt *fmt);
 void print_prec_s(t_fmt *fmt, char *str);
 void print_prec(t_fmt *fmt);
 void print_sign(t_fmt *fmt);
+void print_alt_fmt(t_fmt *fmt, int upper);
 
 //parse
 t_fmt *parse_fmt(char *str);

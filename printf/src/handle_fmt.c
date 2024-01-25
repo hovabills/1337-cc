@@ -47,25 +47,26 @@ char *handle_fmt_u(t_fmt *fmt, unsigned int nbr)
         fmt->padd_len -= fmt->prec_len;
     return (str);
 }
-char *handle_fmt_xX(t_fmt *fmt, unsigned int n, int upper)
+char *handle_fmt_xX(t_fmt *fmt, unsigned int nbr, int upper)
 {
     int slen;
     char *str;
    
     if (upper)
-        str = ft_itoa_base(n, BASE_16_UP, 16);
+        str = ft_itoa_base(nbr, BASE_16_UP, 16);
     else 
-        str = ft_itoa_base(n, BASE_16, 16);
+        str = ft_itoa_base(nbr, BASE_16, 16);
     slen = ft_strlen(str);
+    if (!nbr && fmt->prec && fmt->prec_len == 0)
+    {
+        *str = '\0';
+        return str;
+    }  
+    fmt->padd_len -= slen;
     fmt->prec_len -= slen;
-    
-    if (n || fmt->prec_len > 0)
-        fmt->padd_len -= slen;
     if (fmt->prec && fmt->prec_len > 0)
         fmt->padd_len -= fmt->prec_len;
-    if (fmt->ladj || fmt->prec)
-        fmt->padd_ch = ' ';
-    if (fmt->alt_fmt && n)   
+    if (fmt->alt_fmt)
         fmt->padd_len -= 2;
     return (str);
 }

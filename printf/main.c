@@ -11,9 +11,9 @@ int main()
 	// printf("% 0100p", &str);
 
 
-	// unsigned int d;
+	// int d;
 
-	// d = 0;
+	// d = 100;
 	// // char ch = 'x';
 	// int np = ft_printf("% 10.u\n", d);
 	// printf("%d\n", np);
@@ -25,8 +25,8 @@ int main()
 
 
 
-	printf("%ld\n", sizeof(char));
-	printf("%ld\n", sizeof('a'));
+	ft_printf("%+-4d\n", -15);
+	printf("%+-4d\n", -15);
 	// printf("%#+-- 03.-12c",ch);
 	// printf("%+-12.4d",d);
 	// ft_printf("%+-300.100u\n",d);

@@ -17,9 +17,9 @@ void print_fmt_d(t_fmt *fmt, int n)
     char *str;
     
     str = handle_fmt_d(fmt, n);
+    print_sign(fmt);
     if (!fmt->ladj)
         print_padd(fmt);
-    print_sign(fmt);
     print_prec(fmt);
     fmt->n_print += ft_putstr(str);
     if (fmt->ladj)
@@ -48,16 +48,9 @@ void print_fmt_xX(t_fmt *fmt, unsigned int n, int upper)
     str = handle_fmt_xX(fmt, n, upper);
     if (!fmt->ladj)
         print_padd(fmt);
-    if (fmt->alt_fmt && n)
-    {
-        if (upper)
-            fmt->n_print += write(1, &"0X", 2);
-        else
-            fmt->n_print += write(1, &"0x", 2);
-    }
+    print_alt_fmt(fmt, upper);
     print_prec(fmt);
-    if (n || fmt->prec_len > 0 )
-        fmt->n_print += ft_putstr(str);
+    fmt->n_print += ft_putstr(str);
     if (fmt->ladj)
         print_padd(fmt);
     fmt->n_parse++;

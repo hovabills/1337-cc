@@ -43,3 +43,11 @@ void print_sign(t_fmt *fmt)
     if (fmt->sign)
         fmt->n_print += ft_putchar(fmt->sign);
 }
+
+void print_alt_fmt(t_fmt *fmt, int upper)
+{
+    if (fmt->alt_fmt && upper)
+        fmt->n_print += write(1, "0X", 2);
+    else if (fmt->alt_fmt)
+        fmt->n_print += write(1, "0x", 2);
+}
