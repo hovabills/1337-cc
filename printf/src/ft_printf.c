@@ -19,6 +19,8 @@ t_fmt *print_fmt(char *str, va_list args)
         print_fmt_xX(fmt, va_arg(args, unsigned int), 0);
     else if (*str == 'X')
         print_fmt_xX(fmt, va_arg(args, unsigned int), 1);
+	// else if (*str == 'p')
+    //     print_fmt_p(fmt, va_arg(args, unsigned long int));
     return (fmt);
 }
 

@@ -57,11 +57,15 @@ char *handle_fmt_xX(t_fmt *fmt, unsigned int nbr, int upper)
     else 
         str = ft_itoa_base(nbr, BASE_16, 16);
     slen = ft_strlen(str);
-    if (!nbr && fmt->prec && fmt->prec_len == 0)
+    if (!nbr)
     {
-        *str = '\0';
-        return str;
-    }  
+        fmt->alt_fmt = 0;
+        if (fmt->prec && fmt->prec_len == 0)
+        {
+            *str = '\0';
+            return str;
+        }
+    }
     fmt->padd_len -= slen;
     fmt->prec_len -= slen;
     if (fmt->prec && fmt->prec_len > 0)
@@ -79,9 +83,11 @@ void handle_fmt_s(t_fmt *fmt, char *str)
     slen = ft_strlen(str);
     if (!slen && fmt->prec_len >= 6)
         fmt->padd_len -= 6;
-    else if (slen && fmt->prec_len < slen)   
+    else if (slen &&  fmt->prec && fmt->prec_len < slen)
         fmt->padd_len -=  fmt->prec_len;
     else
         fmt->padd_len -= slen;  
 }
+
+// void handle_fmt_p(t_fmt *fmt, )
 

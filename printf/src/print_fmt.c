@@ -57,6 +57,22 @@ void print_fmt_xX(t_fmt *fmt, unsigned int n, int upper)
     free(str);
 }
 
+// void print_fmt_xX(t_fmt *fmt, unsigned int n, int upper)
+// {
+//     char *str;
+    
+//     str = handle_fmt_xX(fmt, n, upper);
+//     if (!fmt->ladj)
+//         print_padd(fmt);
+//     print_alt_fmt(fmt, upper);
+//     print_prec(fmt);
+//     fmt->n_print += ft_putstr(str);
+//     if (fmt->ladj)
+//         print_padd(fmt);
+//     fmt->n_parse++;
+//     free(str);
+// }
+
 
 void print_fmt_s(t_fmt *fmt, char *str)
 {
