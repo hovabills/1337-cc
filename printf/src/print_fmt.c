@@ -1,5 +1,16 @@
 #include "../inc/fmt.h"
 
+void print_fmt_s(t_fmt *fmt, char *str)
+{
+    handle_fmt_s(fmt, str);
+    if (!fmt->ladj)
+        print_padd(fmt);
+    print_prec_s(fmt, str);
+    if (fmt->ladj)
+        print_padd(fmt);
+    fmt->n_parse++;
+    return;
+}
 void print_fmt_c(t_fmt *fmt, char ch)
 {
     fmt->padd_len--;
@@ -57,35 +68,17 @@ void print_fmt_xX(t_fmt *fmt, unsigned int n, int upper)
     free(str);
 }
 
-void print_fmt_p(t_fmt *fmt, unsigned int n, int upper)
+void print_fmt_p(t_fmt *fmt, unsigned long long n)
 {
     char *str;
     
-    str = handle_fmt_xX(fmt, n, upper);
+    str = handle_fmt_p(fmt, n);
     if (!fmt->ladj)
         print_padd(fmt);
-    print_alt_fmt(fmt, upper);
-    print_prec(fmt);
+    print_alt_fmt(fmt, 0);
     fmt->n_print += ft_putstr(str);
     if (fmt->ladj)
         print_padd(fmt);
     fmt->n_parse++;
     free(str);
 }
-
-
-void print_fmt_s(t_fmt *fmt, char *str)
-{
-    handle_fmt_s(fmt, str);
-    if (!fmt->ladj)
-        print_padd(fmt);
-    print_prec_s(fmt, str);
-    if (fmt->ladj)
-        print_padd(fmt);
-    fmt->n_parse++;
-    return;
-}
-
-
-
-

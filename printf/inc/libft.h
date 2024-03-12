@@ -1,5 +1,5 @@
 #ifndef LIBFT_H
- #define LIBFT_H
+#define LIBFT_H
 
 #include <unistd.h>
 #include <stdlib.h>
@@ -9,9 +9,10 @@
 #define BASE_16_UP "0123456789ABCDEF"
 
 int ft_isdigit(char ch);
-int	ft_putchar(char ch);
-int	ft_putstr(char *str);
-int	ft_putnstr(char *str, int n);
-int	ft_strlen(char *str);
-char *ft_itoa_base(unsigned long long nbr, char * base, int base_len);
+int ft_putchar(char ch);
+int ft_putstr(char *str);
+int ft_putnstr(char *str, int n);
+int ft_strlen(char *str);
+char *ft_strdup(char *str);
+char *ft_itoa_base(unsigned long long nbr, char *base, int base_len);
 #endif

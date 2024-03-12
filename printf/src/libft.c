@@ -13,7 +13,7 @@ int ft_strlen(char *str)
 	return len;
 }
 
-size_t ft_nbrbase_len(long long nbr, int blen)
+size_t ft_nbrbase_len(unsigned long long nbr, size_t blen)
 {
 	size_t len;
 
@@ -59,9 +59,22 @@ int	ft_putnstr(char *str, int n)
 	return i;
 }
 
+char *ft_strdup(char *str)
+{
+	char	*dup;
+	size_t	len;
+
+	len = ft_strlen(str);
+	dup = (char *)malloc(len + 1);
+	while (*str)
+		*dup++ = *str++;
+	*dup = '\0';
+	return (dup - len);
+}
+
 char *ft_itoa_base(unsigned long long nbr, char *base, int blen)
 {
-	int len;
+	size_t len;
 	char *str;
 
 	len = ft_nbrbase_len(nbr, blen);

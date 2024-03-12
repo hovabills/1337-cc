@@ -82,20 +82,3 @@ t_fmt *parse_fmt(char *str)
 	parse_prec(fmt, str);
 	return fmt;
 }
-
-// int main()
-// {
-// 	t_fmt *frmt = parse_fmt("#+ -0.12d");
-// 	printf("PLUS SIGN: %c\n", frmt->sign);
-// 	printf("ALT FMT: %d\n", frmt->alt_fmt);
-// 	printf("LEFT ADJ: %d\n", frmt->ladj);
-// 	printf("PADD CHAR: %c\n", frmt->padd_ch);
-// 	printf("PADD LEN: %d\n", frmt->padd_len);
-// 	printf("PREC: %d\n", frmt->prec);
-// 	printf("PREC LEN	: %d\n", frmt->prec);
-// 	printf("NUM PARSED %d\n", frmt->n_parse);
-
-// 	free(frmt);
-
-// 	return (0);
-// }
