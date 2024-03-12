@@ -1,4 +1,4 @@
-#include "../inc/fmt.h"
+#include "fmt.h"
 
 t_fmt *init_fmt()
 {

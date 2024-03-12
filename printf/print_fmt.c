@@ -1,4 +1,4 @@
-#include "../inc/fmt.h"
+#include "fmt.h"
 
 void print_fmt_s(t_fmt *fmt, char *str)
 {
@@ -22,7 +22,11 @@ void print_fmt_c(t_fmt *fmt, char ch)
         print_padd(fmt);
     fmt->n_parse++;
 }
-
+void print_fmt_perc(t_fmt *fmt)
+{
+    fmt->n_print += ft_putchar('%');
+    fmt->n_parse++;
+}
 void print_fmt_d(t_fmt *fmt, int n)
 {
     char *str;

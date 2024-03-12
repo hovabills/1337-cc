@@ -1,4 +1,4 @@
-#include "../inc/fmt.h"
+#include "fmt.h"
 
 void print_padd(t_fmt *fmt)
 {

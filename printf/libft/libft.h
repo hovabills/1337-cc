@@ -14,5 +14,6 @@ int ft_putstr(char *str);
 int ft_putnstr(char *str, int n);
 int ft_strlen(char *str);
 char *ft_strdup(char *str);
+size_t ft_nbrbase_len(unsigned long long nbr, size_t blen);
 char *ft_itoa_base(unsigned long long nbr, char *base, int base_len);
 #endif

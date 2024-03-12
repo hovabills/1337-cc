@@ -7,7 +7,9 @@ t_fmt *print_fmt(char *str, va_list args)
     fmt = parse_fmt(str);
     str += fmt->n_parse;
 
-    if (*str == 'c')
+    if (*str == '%')
+        print_fmt_perc(fmt);
+    else if (*str == 'c')
         print_fmt_c(fmt, va_arg(args, int));
     else if (*str == 's')
         print_fmt_s(fmt, va_arg(args, char *));
@@ -37,24 +39,15 @@ int ft_printf(const char *str, ...)
 	va_start(args, str);
 	while (*str)
 	{	
-		if (*str == '%' && *(str + 1) == '%')
+		if (*str++ == '%')
 		{
-			len += ft_putchar('%');
-			str += 2;
-		}
-		else if (*str == '%')
-		{
-			str++;
 			fmt = print_fmt((char *)str, args);
 			str += fmt->n_parse;
 			len += fmt->n_print;
 			free(fmt);
 		}
-		else
-		{
-			len += ft_putchar(*str);
-			str++;
-		}
+		else 
+			len += ft_putchar(*(str - 1));
 	}
 	va_end(args);
 	return (len);

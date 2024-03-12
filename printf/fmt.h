@@ -1,7 +1,7 @@
 #ifndef FMT_H
  #define FMT_H
 
-#include "libft.h"
+#include "libft/libft.h"
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -38,6 +38,7 @@ char *handle_fmt_xX(t_fmt *fmt, unsigned int n, int upper);
 char *handle_fmt_p(t_fmt *fmt, unsigned long long n);
 
 //print
+void print_fmt_perc(t_fmt *fmt);
 void print_fmt_c(t_fmt *fmt, char ch);
 void print_fmt_s(t_fmt *fmt, char *str);
 void print_fmt_d(t_fmt *fmt, int n);
