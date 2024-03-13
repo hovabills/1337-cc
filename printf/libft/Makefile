@@ -3,6 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 
+HDRS =	libft.h
 FILES =	ft_isdigit \
 		ft_putchar \
 		ft_putstr \
@@ -15,7 +16,7 @@ FILES =	ft_isdigit \
 SRCS := $(addsuffix .c, $(FILES)) 
 OBJS := $(addsuffix .o, $(FILES)) 
 
-%.o: %.c 
+%.o: %.c HDRS 
 	$(CC) -c -o $@ $< $(CFLAGS) 
 
 $(NAME): $(OBJS)
@@ -29,6 +30,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-.PHONY: clean
+.PHONY: clean fclean all
 
 

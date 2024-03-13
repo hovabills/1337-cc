@@ -6,12 +6,18 @@ AR = ar rcs
 LIBFT_DIR = libft
 LIBFT = libft.a
 
-# CHANGE TO EXPLICIT SRCS
-INCS := $(wildcard *.h)  
-SRCS := $(wildcard *.c)
+HDRS =	fmt.h \
+		ft_printf.h
+
+SRCS =	parse_fmt.c \
+		handle_fmt.c \
+		print_fmt.c \
+		print_fmt_utils.c \
+		ft_printf.c
+
 OBJS := $(SRCS:.c=.o)
 
-%.o: %.c $(INCS)
+%.o: %.c $(HDRS)
 	$(CC) -c -o $@ $< $(CFLAGS) 
 
 $(NAME): $(OBJS)
@@ -31,5 +37,9 @@ clean:
 	rm -f $(OBJS)
 	
 fclean: clean
-	$(MAKE) rm -f -C $(LIBFT_DIR)
+	$(MAKE) fclean -C $(LIBFT_DIR)
 	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: test clean fclean re all bonus
