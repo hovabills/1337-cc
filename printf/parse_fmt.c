@@ -1,8 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_fmt.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adouiyeh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/13 01:32:25 by adouiyeh          #+#    #+#             */
+/*   Updated: 2024/03/13 02:00:04 by adouiyeh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fmt.h"
 
-t_fmt *init_fmt()
+t_fmt	*init_fmt(void)
 {
-	t_fmt *fmt = (t_fmt *)malloc(sizeof(t_fmt));
+	t_fmt	*fmt;
+
+	fmt = (t_fmt *)malloc(sizeof(t_fmt));
 	if (!fmt)
 		return (NULL);
 	fmt->sign = 0;
@@ -14,10 +28,10 @@ t_fmt *init_fmt()
 	fmt->prec_len = 0;
 	fmt->n_parse = 0;
 	fmt->n_print = 0;
-	return fmt;
+	return (fmt);
 }
 
-void parse_hmps(t_fmt *fmt, char *str)
+void	parse_hmps(t_fmt *fmt, char *str)
 {
 	while (1)
 	{
@@ -33,14 +47,14 @@ void parse_hmps(t_fmt *fmt, char *str)
 				fmt->sign = ' ';
 		}
 		else
-			break;
+			break ;
 		fmt->n_parse += 1;
 		str++;
 	}
-	return;
+	return ;
 }
 
-void parse_padd(t_fmt *fmt, char *str)
+void	parse_padd(t_fmt *fmt, char *str)
 {
 	str += fmt->n_parse;
 	if (*str == '0')
@@ -55,9 +69,10 @@ void parse_padd(t_fmt *fmt, char *str)
 		fmt->n_parse++;
 		str++;
 	}
-	return;
+	return ;
 }
-void parse_prec(t_fmt *fmt, char *str)
+
+void	parse_prec(t_fmt *fmt, char *str)
 {
 	str += fmt->n_parse;
 	if (*str == '.')
@@ -74,11 +89,13 @@ void parse_prec(t_fmt *fmt, char *str)
 	}
 }
 
-t_fmt *parse_fmt(char *str)
+t_fmt	*parse_fmt(char *str)
 {
-	t_fmt *fmt = init_fmt();
+	t_fmt	*fmt;
+
+	fmt = init_fmt();
 	parse_hmps(fmt, str);
 	parse_padd(fmt, str);
 	parse_prec(fmt, str);
-	return fmt;
+	return (fmt);
 }

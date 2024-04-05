@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adouiyeh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/13 01:31:42 by adouiyeh          #+#    #+#             */
+/*   Updated: 2024/03/13 01:31:43 by adouiyeh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include "fmt.h"
+# include "fmt.h"
 
-int ft_printf(const char *str, ...);
+int	ft_printf(const char *str, ...);
 
 #endif
