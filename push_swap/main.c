@@ -1,4 +1,4 @@
-#include "stack.h"
+#include "actions.h"
 
 int main()
 {
@@ -7,9 +7,11 @@ int main()
     t_stack *stack_a = stack_init('a');
     stack_copy(stack_a, vals, 10);
     stack_dump(stack_a);
-    stack_rotate(stack_a);
-    stack_dump(stack_a);
-    stack_rrotate(stack_a);
+
+    ra(stack_a);
+    ra(stack_a);
+    rra(stack_a);
+    rra(stack_a);
     stack_dump(stack_a);
     stack_free(stack_a);
 }
