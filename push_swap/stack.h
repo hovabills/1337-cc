@@ -1,6 +1,10 @@
+#ifndef STACK_H
+#define STACK_H
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include "actions.h"
 
 typedef struct s_node
 {
@@ -26,5 +30,9 @@ void stack_push_node(t_stack *stack, t_node *node);
 void stack_rpush_node(t_stack *stack, t_node *node);
 t_node *stack_pop_node(t_stack *stack);
 t_node *stack_rpop_node(t_stack *stack);
+void stack_sort(t_stack *stack);
+void stack_sort_3(t_stack *stack);
 void stack_dump(t_stack *stack);
 void stack_free(t_stack *stack);
+
+#endif

@@ -152,3 +152,40 @@ void stack_rrotate(t_stack *stack)
 		return;
 	stack_push_node(stack, node);
 }
+void stack_sort(t_stack *stack)
+{
+	if (stack->size == 1)
+		return;
+	if (stack->size == 3)
+	{
+		stack_sort_3(stack);
+		return;
+	}
+}
+
+void stack_sort_3(t_stack *stack)
+{
+	t_node *top;
+	t_node *midd;
+	t_node *bott;
+
+	top = stack->top;
+	midd = top->prev;
+	bott = midd->prev;
+	if (top->val > midd->val && top->val < bott->val && midd->val < bott->val)
+		sa(stack);
+	if (top->val > midd->val && top->val > bott->val && midd->val > bott->val)
+	{
+		sa(stack);
+		rra(stack);
+	}
+	if (top->val > midd->val && top->val > bott->val && midd->val < bott->val)
+		ra(stack);
+	if (top->val < midd->val && top->val < bott->val && midd->val > bott->val)
+	{
+		sa(stack);
+		ra(stack);
+	}
+	if (top->val < midd->val && top->val > bott->val && midd->val > bott->val)
+		rra(stack);
+}

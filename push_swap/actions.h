@@ -1,3 +1,6 @@
+#ifndef ACTIONS_H
+#define ACTIONS_H
+
 #include "stack.h"
 
 void sa(t_stack *stack_a);
@@ -11,3 +14,5 @@ void rr(t_stack *stack_a, t_stack *stack_b);
 void rra(t_stack *stack_a);
 void rrb(t_stack *stack_b);
 void rrr(t_stack *stack_a, t_stack *stack_b);
+
+#endif
