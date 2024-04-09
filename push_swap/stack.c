@@ -1,4 +1,5 @@
 #include "stack.h"
+#include "actions.h"
 
 t_stack *stack_init(char name)
 {
@@ -174,18 +175,18 @@ void stack_sort_3(t_stack *stack)
 	bott = midd->prev;
 	if (top->val > midd->val && top->val < bott->val && midd->val < bott->val)
 		sa(stack);
-	if (top->val > midd->val && top->val > bott->val && midd->val > bott->val)
+	else if (top->val > midd->val && top->val > bott->val && midd->val > bott->val)
 	{
 		sa(stack);
 		rra(stack);
 	}
-	if (top->val > midd->val && top->val > bott->val && midd->val < bott->val)
+	else if (top->val > midd->val && top->val > bott->val && midd->val < bott->val)
 		ra(stack);
-	if (top->val < midd->val && top->val < bott->val && midd->val > bott->val)
+	else if (top->val < midd->val && top->val < bott->val && midd->val > bott->val)
 	{
 		sa(stack);
 		ra(stack);
 	}
-	if (top->val < midd->val && top->val > bott->val && midd->val > bott->val)
+	else if (top->val < midd->val && top->val > bott->val && midd->val > bott->val)
 		rra(stack);
 }
