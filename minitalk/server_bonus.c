@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <signal.h>
+#include "minitalk_bonus.h"
 
 void handle_sig(int sig, siginfo_t *info, void *context)
 {
@@ -23,11 +20,7 @@ void handle_sig(int sig, siginfo_t *info, void *context)
 
 	(void)context;
 	if (!pid)
-	{
-
 		pid = info->si_pid;
-		printf("%d", pid);
-	}
 	if (bit-- && sig == SIGUSR1)
 		byte = byte | (1 << bit);
 	if (!bit)
@@ -52,10 +45,12 @@ int main()
 	struct sigaction sa;
 
 	pid_t pid = getpid();
-	printf("%d\n", pid);
+	ft_putstr("The server PID: ");
+	ft_putnbr(pid);
+	ft_putstr("\n");
 	sa.sa_sigaction = handle_sig;
 	sa.sa_flags = SA_SIGINFO;
-	//sigemptyset(&sa.sa_mask);
+	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)

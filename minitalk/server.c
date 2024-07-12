@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
+#include "minitalk.h"
 
 void handle_sig(int sig)
 {
@@ -32,11 +30,11 @@ void handle_sig(int sig)
 int main()
 {
 	pid_t pid = getpid();
-	printf("%d\n", pid);
+	ft_putstr("The server PID: ");
+	ft_putnbr(pid);
+	ft_putstr("\n");
 	signal(SIGUSR1, handle_sig);
 	signal(SIGUSR2, handle_sig);
 	while (1)
-	{
 		pause();
-	}
 }
