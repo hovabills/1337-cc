@@ -15,6 +15,7 @@
 #include <signal.h>
 #include <stdlib.h>
 
+
 int ft_atoi(char *str)
 {
 	int sign;
@@ -33,18 +34,6 @@ int ft_atoi(char *str)
 	return (num * sign);
 }
 
-void ack_sig(int sig)
-{
-	static int count;
-
-	if (sig == SIGUSR1)
-	{
-		printf("%d Characters have been transmitted successfully.", count);
-		exit(0);
-	}
-	count++;
-	write(1, "g", 1);
-}
 void send_sig(pid_t pid, char ch)
 {
 	int bit;
@@ -60,18 +49,30 @@ void send_sig(pid_t pid, char ch)
 	}
 }
 
+void ack_sig(int sig)
+{
+	static int count;
+
+	if (sig == SIGUSR1)
+	{
+		printf("\033[32m %d Characters have been transmitted successfully!\n", count);
+		exit(0);
+	}
+	count++;
+}
+
 int main(int ac, char **av)
 {
-	pid_t pid;
+	int pid;
 	char *str;
 
 	if (ac == 3)
 	{
 		pid = ft_atoi(av[1]);
 		// TODO: check the validity of the pid
+		str = av[2];
 		signal(SIGUSR1, ack_sig);
 		signal(SIGUSR2, ack_sig);
-		str = av[2];
 		while (*str)
 			send_sig(pid, *str++);
 		send_sig(pid, '\0');

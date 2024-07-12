@@ -21,8 +21,13 @@ void handle_sig(int sig, siginfo_t *info, void *context)
 	static char byte;
 	static pid_t pid;
 
+	(void)context;
 	if (!pid)
+	{
+
 		pid = info->si_pid;
+		printf("%d", pid);
+	}
 	if (bit-- && sig == SIGUSR1)
 		byte = byte | (1 << bit);
 	if (!bit)
@@ -30,15 +35,15 @@ void handle_sig(int sig, siginfo_t *info, void *context)
 		if (byte)
 		{
 			write(1, &byte, 1);
-			bit = 8;
-			byte = 0;
-			kill(SIGUSR2, pid);
+			kill(pid, SIGUSR2);
 		}
 		else
 		{
-			kill(SIGUSR1, pid);
+			kill(pid, SIGUSR1);
 			pid = 0;
 		}
+		bit = 8;
+		byte = 0;
 	}
 }
 
@@ -49,8 +54,8 @@ int main()
 	pid_t pid = getpid();
 	printf("%d\n", pid);
 	sa.sa_sigaction = handle_sig;
-	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_SIGINFO;
+	//sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)

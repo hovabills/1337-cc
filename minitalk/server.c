@@ -20,7 +20,7 @@ void handle_sig(int sig)
 	static char byte;
 
 	if (bit-- && sig == SIGUSR1)
-		byte = byte | (1 << bit);
+		byte |= (1 << bit);
 	if (!bit)
 	{
 		write(1, &byte, 1);
