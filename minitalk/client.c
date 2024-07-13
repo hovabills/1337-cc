@@ -6,31 +6,31 @@
 /*   By: adouiyeh <adouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 03:37:49 by adouiyeh          #+#    #+#             */
-/*   Updated: 2024/07/12 03:38:47 by adouiyeh         ###   ########.fr       */
+/*   Updated: 2024/07/13 23:57:40 by adouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void send_sig(pid_t pid, char ch)
+void	send_sig(pid_t pid, char ch)
 {
-	int bit;
+	int	bit;
 
 	bit = 8;
 	while (bit--)
 	{
-		if (ch >> bit & 1)
+		if ((ch >> bit) & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(600);
+		usleep(150);
 	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int pid;
-	char *str;
+	pid_t	pid;
+	char	*str;
 
 	if (ac == 3)
 	{
@@ -38,7 +38,7 @@ int main(int ac, char **av)
 		{
 			ft_putstr("Error: The PID is incorrect");
 			return (1);
-		}	
+		}
 		pid = ft_atoi(av[1]);
 		str = av[2];
 		while (*str)
