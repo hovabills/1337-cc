@@ -23,7 +23,7 @@ void send_sig(pid_t pid, char ch)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(400);
+		usleep(600);
 	}
 }
 
@@ -43,6 +43,7 @@ int main(int ac, char **av)
 		str = av[2];
 		while (*str)
 			send_sig(pid, *str++);
+		send_sig(pid, '\n');
 	}
 	else
 		ft_putstr("Error: The number of argument is incorrect");

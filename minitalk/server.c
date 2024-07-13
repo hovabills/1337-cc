@@ -29,12 +29,15 @@ void handle_sig(int sig)
 
 int main()
 {
-	pid_t pid = getpid();
+	pid_t pid;
+	
+	pid = getpid();
 	ft_putstr("The server PID: ");
 	ft_putnbr(pid);
 	ft_putstr("\n");
-	signal(SIGUSR1, handle_sig);
-	signal(SIGUSR2, handle_sig);
 	while (1)
-		pause();
+	{
+		signal(SIGUSR1, handle_sig);
+		signal(SIGUSR2, handle_sig);
+	}
 }

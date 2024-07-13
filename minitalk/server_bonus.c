@@ -28,7 +28,7 @@ void handle_sig(int sig, siginfo_t *info, void *context)
 		if (byte)
 		{
 			write(1, &byte, 1);
-			kill(pid, SIGUSR2);
+			//kill(pid, SIGUSR2);
 		}
 		else
 		{
@@ -49,10 +49,11 @@ int main()
 	ft_putnbr(pid);
 	ft_putstr("\n");
 	sa.sa_sigaction = handle_sig;
-	sa.sa_flags = SA_SIGINFO;
 	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 		pause();
+	return (0);
 }

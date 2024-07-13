@@ -26,7 +26,7 @@ clean:
 	rm -f $(OBJS) $(BONUS_OBJS)
 	
 fclean: clean
-	rm -f $(NAME)
+	rm -f client server client_bonus server_bonus 
 
 re: fclean all
 

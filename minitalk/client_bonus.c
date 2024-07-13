@@ -24,7 +24,7 @@ void send_sig(pid_t pid, char ch)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(777);
+		usleep(600);
 	}
 }
 
@@ -59,6 +59,7 @@ int main(int ac, char **av)
 		signal(SIGUSR2, ack_sig);
 		while (*str)
 			send_sig(pid, *str++);
+		send_sig(pid, '\n');
 		send_sig(pid, '\0');
 		while (1)
 			pause();
